@@ -11,14 +11,10 @@ public class ModEffects {
     public static final DeferredRegister<MobEffect> REGISTRY =
             DeferredRegister.create(Registries.MOB_EFFECT, DimensionMod.MODID);
 
-    // Reserved for custom effects if needed in the future
     public static final RegistryObject<MobEffect> VOID_TOUCH =
-            REGISTRY.register("void_touch", () -> new net.minecraft.world.effect.MobEffect(
-                    net.minecraft.core.MobCategories.MISC, 0x220033, false, true
-            ).addAttributeModifier(
-                    net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE,
-                    "void_touch_debuff",
-                    -2.0,
-                    net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD
-            ));
+            REGISTRY.register("void_touch", () ->
+                    new net.minecraft.world.effect.MobEffect(
+                            net.minecraft.core.MobCategories.MISC, 300, 0x220033, false, true
+                    )
+            );
 }

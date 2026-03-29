@@ -7,9 +7,6 @@ import com.dimensionmod.entity.boss.VoidArbiter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.SpawnPlacementType;
-import net.minecraft.world.flag.SystemFlag;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -18,7 +15,6 @@ public class ModEntities {
     public static final DeferredRegister<EntityType<?>> REGISTRY =
             DeferredRegister.create(Registries.ENTITY_TYPE, DimensionMod.MODID);
 
-    // ============ BOSSES ============
     public static final RegistryObject<EntityType<AbyssalDevourer>> ABYSSAL_DEVOURER =
             REGISTRY.register("abyssal_devourer", () ->
                     EntityType.Builder.of(AbyssalDevourer::new, MobCategory.MONSTER)
@@ -50,12 +46,6 @@ public class ModEntities {
             );
 
     public static void registerSpawnPlacements() {
-        // AbyssalDevourer - spawns in dark caves/underground
-        net.minecraft.world.level.LevelSpawnerSetting settings =
-                new net.minecraft.world.level.LevelSpawnerSetting(
-                        Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                        15, 5, 1
-                );
-        // Registration handled via biome
+        // Spawn placements handled via Forge's SpawnPlacementRegister event
     }
 }

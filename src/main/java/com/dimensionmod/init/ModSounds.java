@@ -13,7 +13,7 @@ public class ModSounds {
             DeferredRegister.create(Registries.SOUND_EVENT, DimensionMod.MODID);
 
     public static final RegistryObject<SoundEvent> BOSS_DEATH =
-            REGISTRY.register("boss.death", () ->
-                    SoundEvent.createVariableRangeEvent(new ResourceLocation(DimensionMod.MODID, "boss.death"))
+            REGISTRY.register("boss_death", () ->
+                    SoundEvent.createVariableRangeEvent(new ResourceLocation(DimensionMod.MODID, "boss_death"))
             );
 }

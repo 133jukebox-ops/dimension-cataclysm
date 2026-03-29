@@ -1,5 +1,13 @@
 pluginManagement {
     repositories {
+        maven {
+            name = 'Tencent Forge Plugin'
+            url = 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
+        }
+        maven {
+            name = 'Tencent Gradle Plugin'
+            url = 'https://mirrors.cloud.tencent.com/nexus/repository/maven/'
+        }
         gradlePluginPortal()
         maven {
             name = 'MinecraftForge'

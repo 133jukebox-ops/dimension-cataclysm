@@ -21,14 +21,12 @@ public class DimensionMod {
         ModSounds.REGISTRY.register(modBus);
         ModEffects.REGISTRY.register(modBus);
         ModEntities.REGISTRY.register(modBus);
-        ModStructures.REGISTRY.register(modBus);
 
         modBus.addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("Dimension Cataclysm loaded! Initializing bosses and structures...");
-        ModStructures.registerStructures();
+        LOGGER.info("Dimension Cataclysm loaded! Initializing bosses...");
         event.enqueueWork(() -> {
             ModEntities.registerSpawnPlacements();
         });

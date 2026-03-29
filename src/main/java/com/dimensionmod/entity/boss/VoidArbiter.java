@@ -25,7 +25,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
-import java.util.util.Collections;
+import java.util.Collections;
 
 public class VoidArbiter extends Monster {
     private static final int PHASE2_HEALTH = (int) (800 * 0.35);

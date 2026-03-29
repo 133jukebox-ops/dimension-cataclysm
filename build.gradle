@@ -13,12 +13,25 @@ base { archivesName = 'dimensionmod' }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+repositories {
+    maven {
+        name = 'MinecraftForge'
+        url = 'https://maven.minecraftforge.net/'
+    }
+    maven {
+        name = 'Tencent Forge Mirror'
+        url = 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
+    }
+    maven {
+        name = 'Tencent Maven Central'
+        url = 'https://mirrors.cloud.tencent.com/nexus/repository/maven/'
+    }
+    mavenCentral()
+}
 
 minecraft {
     mappings channel: 'official', version: '1.20.1'
     copyIdeResources = true
-
     runs {
         client {
             workingDirectory project.file('run')
@@ -29,7 +42,6 @@ minecraft {
                 dimensionmod { source sourceSets.main }
             }
         }
-
         server {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
@@ -40,7 +52,6 @@ minecraft {
                 dimensionmod { source sourceSets.main }
             }
         }
-
         gameTestServer {
             workingDirectory project.file('run-data')
             property 'forge.logging.markers', 'REGISTRIES'
@@ -50,7 +61,6 @@ minecraft {
                 dimensionmod { source sourceSets.main }
             }
         }
-
         data {
             workingDirectory project.file('run-data')
             property 'forge.logging.markers', 'REGISTRIES'
@@ -61,12 +71,6 @@ minecraft {
             }
         }
     }
-}
-
-repositories {
-    maven { name = 'MinecraftForge'; url = 'https://maven.opens占用tencent.com/nexus/repository/maven-public/' }
-    maven { name = 'Minecraft'; url = 'https://libraries.minecraft.net' }
-    mavenCentral()
 }
 
 dependencies {
