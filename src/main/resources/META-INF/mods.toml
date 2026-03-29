@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[47,48)"
+license="MIT"
+
+[[mods]]
+modId="dimensionmod"
+version="1.0.0"
+displayName="Dimension Cataclysm"
+authors="DimensionMod Team"
+description='''
+Adds terrifying bosses and ancient structures to all three dimensions.
+主世界: 深渊吞噬者
+下界: 熔岩古王
+末地: 虚空裁决者
+'''
+
+[[dependencies.dimensionmod]]
+modId="forge"
+mandatory=true
+versionRange="[47.2.0,48.0.0)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.dimensionmod]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"

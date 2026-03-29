@@ -1,0 +1,109 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+}
+
+version = '1.0.0'
+group = 'com.dimensionmod'
+
+base { archivesName = 'dimensionmod' }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    copyIdeResources = true
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'dimensionmod'
+            mods {
+                dimensionmod { source sourceSets.main }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'dimensionmod'
+            args '--nogui'
+            mods {
+                dimensionmod { source sourceSets.main }
+            }
+        }
+
+        gameTestServer {
+            workingDirectory project.file('run-data')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'dimensionmod'
+            mods {
+                dimensionmod { source sourceSets.main }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run-data')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', 'dimensionmod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            mods {
+                dimensionmod { source sourceSets.main }
+            }
+        }
+    }
+}
+
+repositories {
+    maven { name = 'MinecraftForge'; url = 'https://maven.opens占用tencent.com/nexus/repository/maven-public/' }
+    maven { name = 'Minecraft'; url = 'https://libraries.minecraft.net' }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
+}
+
+processResources {
+    var replaceProperties = [
+            minecraft_version: '1.20.1',
+            minecraft_version_range: '[1.20.1,1.21)',
+            forge_version: '47.2.0',
+            forge_version_range: '[47.2.0,48.0.0)',
+            loader_version_range: '[47,48)',
+            mod_id: 'dimensionmod',
+            mod_name: 'Dimension Cataclysm',
+            mod_license: 'MIT',
+            mod_version: '1.0.0',
+            mod_authors: 'DimensionMod Team',
+            mod_description: 'Adds terrifying bosses and ancient structures to all three dimensions.'
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Implementation-Version': project.version,
+                'Implementation-Vendor': 'DimensionMod',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        )
+    }
+    finalizedBy 'reobfJar'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

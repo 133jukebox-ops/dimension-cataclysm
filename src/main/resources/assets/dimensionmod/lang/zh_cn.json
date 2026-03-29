@@ -1,0 +1,13 @@
+{
+  "item.dimensionmod.inferno_ancient_soul": "熔岩古王之魂",
+  "item.dimensionmod.abyssal_devourer_soul": "深渊吞噬者之魂",
+  "item.dimensionmod.void_arbiter_soul": "虚空裁决者之魂",
+  "entity.dimensionmod.inferno_ancient": "熔岩古王",
+  "entity.dimensionmod.abyssal_devourer": "深渊吞噬者",
+  "entity.dimensionmod.void_arbiter": "虚空裁决者",
+  "effect.dimensionmod.void_touch": "虚空侵蚀",
+  "subtitles.entity.dimensionmod.boss.death": "Boss 消亡",
+  "advancements.dimensionmod.boss_slayer.title": "维度灾变猎手",
+  "advancements.dimensionmod.boss_slayer.description": "击败所有三个维度的 Boss",
+  "dimensionmod.subtitle.boss_spawn": "BOSS 降临"
+}
