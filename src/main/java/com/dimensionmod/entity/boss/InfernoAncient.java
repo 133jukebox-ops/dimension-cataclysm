@@ -70,10 +70,10 @@ public class InfernoAncient extends Monster {
     }
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(DATA_PHASE, 1);
-        builder.define(DATA_SHIELD, false);
+    protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData data) {
+        super.defineSynchedData(data);
+        data.define(DATA_PHASE, 1);
+        data.define(DATA_SHIELD, false);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class InfernoAncient extends Monster {
     private void deactivateShield() {
         hasShield = false;
         this.entityData.set(DATA_SHIELD, false);
-        this.playSound(SoundEvents.GENERIC_BREAK, 1.5f, 1.0f);
+        this.playSound(SoundEvents.ENTITY_ITEM_BREAK, 1.5f, 1.0f);
         isEnraged = true;
         enragedTime = 0;
     }
@@ -216,7 +216,7 @@ public class InfernoAncient extends Monster {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (hasShield && source != this.level().damageSources().outOfWorld()) {
+        if (hasShield && source != net.minecraft.world.damagesource.DamageSources.theSource(this)) {
             amount *= 0.2f;
         }
         if (isEnraged) {

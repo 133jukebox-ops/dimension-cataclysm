@@ -124,7 +124,7 @@ public class VoidArbiter extends Monster {
         shrinkTimer = 0;
         currentArenaRadius = SPACE_SHRINK_RADIUS_START;
         this.level().broadcastEntityEvent(this, (byte) 2);
-        this.playSound(SoundEvents.ELDER_GUARDIAN_CURSE, 2.0f, 0.6f);
+        this.playSound(SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE, 2.0f, 0.6f);
         for (int i = 0; i < 30; i++) {
             this.level().addParticle(ParticleTypes.REVERSE_PORTAL,
                     this.getX() + (this.random.nextDouble() - 0.5) * 5,
