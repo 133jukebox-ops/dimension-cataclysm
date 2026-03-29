@@ -14,18 +14,7 @@ base { archivesName = 'dimensionmod' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 repositories {
-    maven {
-        name = 'MinecraftForge'
-        url = 'https://maven.minecraftforge.net/'
-    }
-    maven {
-        name = 'Tencent Forge Mirror'
-        url = 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'
-    }
-    maven {
-        name = 'Tencent Maven Central'
-        url = 'https://mirrors.cloud.tencent.com/nexus/repository/maven/'
-    }
+    maven { name = 'MinecraftForge'; url = 'https://maven.minecraftforge.net/' }
     mavenCentral()
 }
 
@@ -38,9 +27,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', 'dimensionmod'
-            mods {
-                dimensionmod { source sourceSets.main }
-            }
+            mods { dimensionmod { source sourceSets.main } }
         }
         server {
             workingDirectory project.file('run')
@@ -48,27 +35,21 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', 'dimensionmod'
             args '--nogui'
-            mods {
-                dimensionmod { source sourceSets.main }
-            }
+            mods { dimensionmod { source sourceSets.main } }
         }
         gameTestServer {
             workingDirectory project.file('run-data')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', 'dimensionmod'
-            mods {
-                dimensionmod { source sourceSets.main }
-            }
+            mods { dimensionmod { source sourceSets.main } }
         }
         data {
             workingDirectory project.file('run-data')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             args '--mod', 'dimensionmod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-            mods {
-                dimensionmod { source sourceSets.main }
-            }
+            mods { dimensionmod { source sourceSets.main } }
         }
     }
 }
@@ -78,7 +59,7 @@ dependencies {
 }
 
 processResources {
-    var replaceProperties = [
+    def replaceProperties = [
             minecraft_version: '1.20.1',
             minecraft_version_range: '[1.20.1,1.21)',
             forge_version: '47.2.0',
